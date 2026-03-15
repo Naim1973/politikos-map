@@ -14,7 +14,7 @@ import {
   CRIME_TYPE_COLORS,
   type Crime,
 } from "@/lib/crime-data";
-import { fetchApprovedReports, fetchPendingReports } from "@/lib/api/reports";
+import { fetchApprovedReports } from "@/lib/api/reports";
 import { mapServerReport } from "@/lib/api/mappers";
 
 
