@@ -39,37 +39,20 @@ export default function HomePage() {
   const r = useRouter();
 
   // Fetch approved reports from server
-  const loadReports = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [approvedRes, pendingRes] = await Promise.all([
-  fetchApprovedReports(),
-  fetchPendingReports(),
-]);
-const approvedCrimes = approvedRes.data.map(mapServerReport);
-const pendingCrimes = pendingRes.data.map((r) => ({
-  id: r.reportId,
-  title: r.title,
-  type: r.type as any,
-  location: r.locationText || r.upazila?.nameSnapshot || "Unknown location",
-  lat: r.latitude ?? 23.8103,
-  lng: r.longitude ?? 90.4125,
-  severity: (r.severity as any) ?? "MEDIUM",
-  workflowStatus: "PENDING" as any,
-  description: r.description || "",
-  reportedAt: new Date(r.submittedAt),
-  createdAt: new Date(r.submittedAt),
-}));
-const mapped = [...approvedCrimes, ...pendingCrimes];
-setCrimes(mapped);
-crimesRef.current = mapped;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load reports");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+ const loadReports = useCallback(async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    const res = await fetchApprovedReports();
+    const mapped = res.data.map(mapServerReport);
+    setCrimes(mapped);
+    crimesRef.current = mapped;
+  } catch (err) {
+    setError(err instanceof Error ? err.message : "Failed to load reports");
+  } finally {
+    setLoading(false);
+  }
+}, []);
 
   useEffect(() => {
     setMounted(true);
