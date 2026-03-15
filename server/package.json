@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "start": "node --import tsx/esm src/index.ts",
     "init-db": "tsx src/scripts/init-db.ts",
     "fix-coords": "tsx src/scripts/fix-coordinates.ts"
   },
