@@ -1,0 +1,24 @@
+{
+  "name": "politikos-map-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "init-db": "tsx src/scripts/init-db.ts",
+    "fix-coords": "tsx src/scripts/fix-coordinates.ts"
+  },
+  "dependencies": {
+    "@convex-dev/better-auth": "^0.10.13",
+    "@hono/node-server": "^1.13.8",
+    "better-auth": "1.4.9",
+    "convex": "^1.25.0",
+    "dotenv": "^17.3.1",
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
